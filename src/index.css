@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-base text-text font-body antialiased;
+  }
+  ::selection {
+    @apply bg-signal/30 text-text;
+  }
+  :focus-visible {
+    outline: 2px solid #5EEAD4;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-display text-xs tracking-[0.25em] uppercase text-signal;
+  }
+  .signal-divider {
+    @apply relative h-px w-full bg-edge overflow-hidden my-16;
+  }
+  .signal-divider::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    width: 6px;
+    height: 5px;
+    border-radius: 999px;
+    background: #5EEAD4;
+    box-shadow: 0 0 8px 2px rgba(94,234,212,0.7);
+    animation: pulse_travel 4s linear infinite;
+  }
+  .card {
+    @apply bg-surface border border-edge rounded-lg p-6 hover:border-signal/50 transition-colors duration-300;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-signal text-base font-display font-bold text-sm tracking-wide uppercase px-6 py-3 rounded hover:bg-white transition-colors duration-200;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-edge text-text font-display text-sm tracking-wide uppercase px-6 py-3 rounded hover:border-signal hover:text-signal transition-colors duration-200;
+  }
+  .input-field {
+    @apply w-full bg-surface2 border border-edge rounded px-4 py-3 text-text placeholder:text-muted focus:border-signal outline-none transition-colors;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
